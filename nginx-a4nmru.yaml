@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-a4nmru
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-a4nmru
+  namespace: my-nginx-a4nmru
+  labels:
+    name: nginx-a4nmru
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-a4nmru
+  template:
+    metadata:
+      namespace: my-nginx-a4nmru
+      labels:
+        name: nginx-a4nmru
+    spec:
+      containers:
+      - name: nginx-a4nmru
+        image: nginx
+        ports:
+        - containerPort: 80
+
